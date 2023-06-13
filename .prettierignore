@@ -1,0 +1,8 @@
+#Ignore the next folders
+
+build
+coverage
+
+#Ignore the next files
+
+*.html
