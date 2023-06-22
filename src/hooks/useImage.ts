@@ -1,37 +1,25 @@
 import { useState, useEffect } from "react";
 import { getLevels } from "../../firebase.js";
-
-interface Level {
-  author: {
-    name: string;
-    url: string;
-  };
-  imgUrl: string;
-  targets: object;
-  thumbnail: string;
-}
+import { LevelData } from "../types/types.js";
 
 function useImage() {
-  const [author, setAuthor] = useState();
-  const [gameImage, setGameImage] = useState();
-  const [targets, setTargets] = useState();
-  const [thumb, setThumb] = useState();
+  const [levelData, setLevelData] = useState<LevelData>();
+  const [fetch, setIsFetch] = useState(true);
 
   useEffect(() => {
+    if (!fetch) return;
+    console.log("fetching");
     getLevels()
       .then((data) => {
-        const { author, imgUrl, targets, thumbnail } = data[0];
-        setAuthor(author);
-        setGameImage(imgUrl);
-        setTargets(targets);
-        setThumb(thumbnail);
+        setLevelData(data[0] as unknown as LevelData);
+        setIsFetch(false);
       })
       .catch((error) => {
         throw new Error(error);
       });
   }, []);
 
-  return { author, img: gameImage, targets };
+  return { ...levelData };
 }
 
 export { useImage };
