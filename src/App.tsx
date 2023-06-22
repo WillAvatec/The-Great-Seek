@@ -1,5 +1,7 @@
+import GameImage from "./components/GameImage";
+
 function App() {
-  return null;
+  return <GameImage />;
 }
 
 export default App;
