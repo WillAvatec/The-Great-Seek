@@ -1,4 +1,4 @@
-import GameImage from "./components/GameImage";
+import GameImage from "./components/GameImage/GameImage";
 
 function App() {
   return <GameImage />;
