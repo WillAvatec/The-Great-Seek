@@ -1,4 +1,5 @@
 import { Coords, Target } from "../../types/types.ts";
+import TargetObject from "../TargetObject/TargetObject.tsx";
 import "./Dropdown.scss";
 
 function Dropdown({
@@ -17,12 +18,10 @@ function Dropdown({
           <ul>
             {elements &&
               Object.entries(elements).map((target) => {
+                const [name, obj] = target;
                 return (
-                  <li id={target[0]} key={target[0]}>
-                    <img src={target[1].img} />
-                    <div className="target-info">
-                      <h4 className="target--name">{target[0]}</h4>
-                    </div>
+                  <li id={name} key={name}>
+                    <TargetObject name={name} picture={obj.img} />
                   </li>
                 );
               })}
