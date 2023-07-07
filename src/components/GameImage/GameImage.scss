@@ -1,6 +1,7 @@
 #game-container {
   width: 100%;
   outline: 3px solid red;
+  position: relative;
 
   img {
     width: 100%;
@@ -8,10 +9,10 @@
   }
 }
 
-@media (max-width: 528px) {
+/* @media (max-width: 528px) {
   #game-container {
     img {
       width: auto;
     }
   }
-}
+} */
