@@ -11,22 +11,29 @@ function GameImage() {
   const { targets, author, imgUrl } = useImage();
   const [coord, setCoord] = useState({ x: 0, y: 0 });
   const active = useRef(false);
+  const imgRef = useRef<HTMLImageElement>();
 
   const handleClick: MouseEventHandler = (e) => {
-    setCoord({
-      x: e.pageX - DROPDOWN_POINTER_WIDTH / 2,
-      y: e.pageY - DROPDOWN_POINTER_HEIGHT / 2,
+    // Get proportions of Image Element
+    const bounds: DOMRect = imgRef.current?.getBoundingClientRect();
+    const { left, top, width, height } = bounds;
+    // Discount the coordinates valuesof the DOMRect
+    const x = e.clientX - left;
+    const y = e.clientY - top;
+    // Convert to percentage
+    const xPercent = (x / width) * 100;
+    const yPercent = (y / height) * 100;
+    setCoord(() => {
+      return { x: xPercent, y: yPercent };
     });
+    // Toggle dropdown Menu
     active.current = !active.current;
-    console.log(coord);
   };
 
-  console.log("gameimage");
   return (
     <div id="game-container">
-      {/* <TargetPointer position={position} offset={offset} /> */}
       <Dropdown render={active.current} location={coord} elements={targets} />
-      <img onClick={handleClick} src={imgUrl} />
+      <img ref={imgRef} onClick={handleClick} src={imgUrl} />
     </div>
   );
 }
