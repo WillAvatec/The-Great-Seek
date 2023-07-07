@@ -29,12 +29,13 @@
 #click-point {
   box-sizing: border-box;
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: clamp(5vw, 3rem, 100px);
+  height: clamp(5vw, 3rem, 100px);
   background: rgba($color: #20d40f, $alpha: 0.3);
-  border: #0e8f02 dashed 10px;
+  border: #48ff00 dashed 5px;
   border-radius: 50%;
   z-index: 15;
+  transform: translate(-50%, -50%);
 
   &::after {
     content: "";
@@ -42,21 +43,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    background-color: red;
+    background-color: #48ff00;
   }
 }
 
 #dropdown-menu {
   position: absolute;
+  transform: translate(60%, 20%);
   z-index: 10;
-  padding: 20px;
+  padding: 1rem;
   margin: 0;
-  width: 11.5rem;
   background-color: #ddd;
-  outline: 3px solid rgb(102, 102, 102);
+  outline: 3px solid rgb(24 17 17);
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   ul {
@@ -69,26 +70,28 @@
     gap: 5px;
     list-style: none;
     li {
-      width: 100%;
       flex: 1;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 10px;
       img {
-        width: 100px;
-        height: 120px;
-        object-fit: cover;
+        border-radius: 10px;
+        width: clamp(2.3rem, 5vw, 5rem);
+        height: clamp(2.3rem, 5vw, 7rem);
       }
       .target-info {
         display: flex;
         flex-direction: column;
         .target--name {
+          font-size: clamp(0.5rem, 0.5vw, 3rem);
           font-family: "Source Sans 3";
           text-transform: capitalize;
           flex: 1;
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #dropdown-menu {
+    padding: 0.5rem;
   }
 }

@@ -14,7 +14,7 @@ function Dropdown({
   return (
     render && (
       <div id="click-point" style={{ top: location.y, left: location.x }}>
-        <div id="dropdown-menu" style={{ top: "70px", left: "70px" }}>
+        <div id="dropdown-menu">
           <ul>
             {elements &&
               Object.entries(elements).map((target) => {
