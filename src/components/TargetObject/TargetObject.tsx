@@ -8,12 +8,12 @@ function TargetObject({
   handleClick?: Function;
 }) {
   return (
-    <div>
+    <>
       <img src={picture} alt={"target-" + name} />
-      <div className="target-info">
+      {/* <div className="target-info">
         <h4 className="target--name">{name}</h4>
-      </div>
-    </div>
+      </div> */}
+    </>
   );
 }
 
